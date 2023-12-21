@@ -12,18 +12,20 @@ cleanup:"refreshing the screen"
 
 }
 
-def "Test case for input validation"(){
+def "Test case for input code validation"(){
 given:"Hit the URl and page will be opened"
        HomePage homePage = at HomePage
-when:"enter the input"
-       homePage.enteringInputValueToTaskDescription(inputVal)
-then:"check whether the add task btn is disabled or not"
-      homePage.verifyBtnAddTaskIsDisabled()
+when:"enter the input code"
+       homePage.enteringInputValueToinputCode(inputVal)
+       homePage.clickOnCompileBtn()
+then:"check whether code has been executed Properly or not"
+      homePage.verifyOutputTextCode(outputVal)
 cleanup:"refreshing the screen"
        homePage.hardRefresh()
 
 where:"test data"
-       inputVal  <<  ["tasknew"]
+       inputVal  <<  ["public class HelloWorld { public static void main(String[] args) { System.out.println(\"Hello, World!\"); } }"]
+       outputVal << ["Hello, World!]
 }
 
 def "Test case for adding a task"(){
