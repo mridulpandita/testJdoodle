@@ -1,4 +1,4 @@
-class ToDoAppTest extends LoginSpec{
+class jDoodleTestingSpec extends LoginSpec{
 
 
 def "Test Loading the app"(){
