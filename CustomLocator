@@ -1,0 +1,40 @@
+import geb.Page
+class CustomLocator extend Page{
+
+static content = {
+
+hdrToDoApp              {$("div.text-center h1")}
+
+}
+
+def closeBrowserAlert(){
+
+try{
+driver.switchTo().alert().accept()
+}
+catch(Exception e){
+return true
+  }
+return true
+}
+
+def checkHomePageLoaded(){
+try{
+js.executeScript(driver.findElement(By.cssSelector("div.text-center h1")),"argument[0].scrollIntoView())"
+hdrToDoApp.click()
+}
+catch(ElementClickInterceptedException | Exception e){
+return false
+  }
+return true
+}
+
+
+def hardRefresh(){
+closeBrowserAlert()
+if(!checkHomePageLoaded()){
+driver.navigate().refresh()
+  }
+}
+
+}
