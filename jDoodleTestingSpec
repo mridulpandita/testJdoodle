@@ -1,0 +1,84 @@
+class ToDoAppTest extends LoginSpec{
+
+
+def "Test Loading the app"(){
+given:"Hit the URl and page will be opened"
+       HomePage homePage = at HomePage
+when:"Wait for the page to be loaded properly"
+then:"page should be loaded properly"
+       homePage.verifyHomePageLoadedSuccessfully()
+cleanup:"refreshing the screen"
+       homePage.hardRefresh()
+
+}
+
+def "Test case for input validation"(){
+given:"Hit the URl and page will be opened"
+       HomePage homePage = at HomePage
+when:"enter the input"
+       homePage.enteringInputValueToTaskDescription(inputVal)
+then:"check whether the add task btn is disabled or not"
+      homePage.verifyBtnAddTaskIsDisabled()
+cleanup:"refreshing the screen"
+       homePage.hardRefresh()
+
+where:"test data"
+       inputVal  <<  ["tasknew"]
+}
+
+def "Test case for adding a task"(){
+given:"Hit the URl and page will be opened"
+       HomePage homePage = at HomePage
+when:"enter the input and date"
+      homePage.enteringInputValueToTaskDescription(inputVal)
+      homePage.enteringInputValueToDateArea(dateVal)
+and:"click on add task btn"
+      homePage.clickonBtnAddTask()
+then:"data has been saved"
+      homePage.verifyDataIsSaved("$dateVal - $inputVal")
+cleanup:"refreshing the screen"
+       homePage.hardRefresh()
+
+where:"test data"
+       inputVal  <<  ["tasknew"]
+       dateVal  <<  ["01/01/2023"]
+}
+
+def "Test case for marking a test case as done"(){
+given:"Hit the URl and page will be opened"
+       HomePage homePage = at HomePage
+when:"check whether data is there"
+then:"data has been saved"
+      homePage.verifyDataIsSaved("$dateVal - $inputVal")
+when:"mark the case as done"
+      homePage.clickOnDoneBtnBesideSavedData(inputVal)
+then:"the entry should be marked done"
+      homePage.verifyEntryHasBeenMarkedDoneForSpecificTask(inputVal)
+cleanup:"refreshing the screen"
+       homePage.hardRefresh()
+
+where:"test data"
+       inputVal  <<  ["tasknew"]
+       dateVal  <<  ["01/01/2023"]
+}
+
+def "Test case for deleting a test case"(){
+given:"Hit the URl and page will be opened"
+       HomePage homePage = at HomePage
+when:"check whether data is there"
+then:"data has been saved"
+      homePage.verifyDataIsSaved("$dateVal - $inputVal")
+when:"click on delete btn for a test case"
+      homePage.clickOnDeleteBtnForSpecificTask(inputVal)
+then:"verify data has been deleted successfully"
+      homePage.verifySpecificTaskIsDeletedOrNot(inputVal)
+cleanup:"refreshing the screen"
+       homePage.hardRefresh()
+
+where:"test data"
+       inputVal  <<  ["tasknew"]
+       dateVal  <<  ["01/01/2023"]
+      
+ }
+
+}
