@@ -14,6 +14,7 @@ inputTxtAreaCode      {$("#code textarea")}
 compileBtn            {$("button[contains(text(),'Execute')]")}
 outputTxtAreaCode     {$("#output textarea")}
 loginBtn              {$("div[contains(text(),"Login")]")}
+divOutputTextTabs     {$("#splitTabsHeader")}
 }
 
 //Method for verifying the header of page
@@ -46,23 +47,17 @@ def verifyLoginBtnIsDisplayed(){
 return waitFor("slow"){this.loginBtn.first().displayed} 
 }
 
+//Method to verify all the 5 output tabs are displayed succesfully
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def verifyOutputTabsDisplayedSuccessfully(String... options){
+waitFor("slow"){divOutputTextTabs}
+boolean flag = true
+for(String str : options){
+if(!divOutputTextTabs.find("button",text:contains(str)).displayed){
+        flag = false
+        break
+}
+  }
+return flag
+ }
 }
