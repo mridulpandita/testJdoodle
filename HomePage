@@ -1,0 +1,17 @@
+import geb.navigator.Navigator
+import geb.waiting.WaitTimeOutException
+
+class HomePage extends CustomLocator{
+
+static at = {
+waitFor("slow"){$("div.text-center h1").text().contains("Compiler IDE")}
+  }
+
+static content = {
+
+hdrToDoHomeHeader     {$("div.text-center h1")}
+
+}
+ 
+
+}
