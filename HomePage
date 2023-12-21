@@ -13,7 +13,7 @@ hdrToDoHomeHeader     {$("div.text-center h1")}
 inputTxtAreaCode      {$("#code textarea")}
 compileBtn            {$("button[contains(text(),'Execute')]")}
 outputTxtAreaCode     {$("#output textarea")}
-
+loginBtn              {$("div[contains(text(),"Login")]")}
 }
 
 //Method for verifying the header of page
@@ -38,6 +38,12 @@ waitFor("slow"){this.compileBtn.click()}
 
 def verifyOutputTextCode(String str){
 return waitFor("slow"){outputTxtAreaCode.contains(str)}
+}
+
+//Method to verify LoginBtn has been displayed succesfully
+
+def verifyLoginBtnIsDisplayed(){
+return waitFor("slow"){this.loginBtn.first().displayed} 
 }
 
 
