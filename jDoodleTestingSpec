@@ -41,7 +41,7 @@ where:"test data"
        inputVal  <<  ["public class HelloWorld { public static void main(String[] args) { System.out.println(\"Hello, World!\"); }"]
 }
 
-def "Test case for verifying login btn is displlayed"(){
+def "Test case for verifying login btn is displayed"(){
 given:"Hit the URl and page will be opened"
        HomePage homePage = at HomePage
 when:"Check whether Login btn is displayed"
@@ -52,23 +52,14 @@ cleanup:"refreshing the screen"
 
 }
 
-def "Test case for deleting a test case"(){
+def "Test case for verifying all output tabs are displayed"(){
 given:"Hit the URl and page will be opened"
        HomePage homePage = at HomePage
-when:"check whether data is there"
-then:"data has been saved"
-      homePage.verifyDataIsSaved("$dateVal - $inputVal")
-when:"click on delete btn for a test case"
-      homePage.clickOnDeleteBtnForSpecificTask(inputVal)
-then:"verify data has been deleted successfully"
-      homePage.verifySpecificTaskIsDeletedOrNot(inputVal)
+when:"check whether all the output tabs are displayed properly"
+then:"All the 5 tabs should be displayed properly(ie External Libraries,Upload Files,Input, Output,JDroid)"
+       homePage.verifyOutputTabsDisplayedSuccessfully("External Libraries","Upload Files","Input","Output","JDroid")
 cleanup:"refreshing the screen"
        homePage.hardRefresh()
-
-where:"test data"
-       inputVal  <<  ["tasknew"]
-       dateVal  <<  ["01/01/2023"]
-      
- }
+      }
 
 }
