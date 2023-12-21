@@ -12,6 +12,12 @@ static content = {
 hdrToDoHomeHeader     {$("div.text-center h1")}
 
 }
+
+//Method for verifying the header of page
+
+def verifyHomePageLoadedSuccessfully(){
+return waitFor("slow"){this.hdrToDoHomeHeader.displayed}
+}
  
 
 }
