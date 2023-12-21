@@ -10,6 +10,9 @@ waitFor("slow"){$("div.text-center h1").text().contains("Compiler IDE")}
 static content = {
 
 hdrToDoHomeHeader     {$("div.text-center h1")}
+inputTxtAreaCode      {$("#code textarea")}
+compileBtn            {$("button[contains(text(),'Execute')]")}
+outputTxtAreaCode     {$("#output textarea")}
 
 }
 
@@ -18,6 +21,42 @@ hdrToDoHomeHeader     {$("div.text-center h1")}
 def verifyHomePageLoadedSuccessfully(){
 return waitFor("slow"){this.hdrToDoHomeHeader.displayed}
 }
- 
+
+//Method to enter code in Input area
+
+def enteringInputValueToinputCode(String str){
+waitFor("slow"){this.inputTxtAreaCode.value(str)}
+}
+
+// Method to click on compile btn
+
+def clickOnCompileBtn(){
+waitFor("slow"){this.compileBtn.click()}
+}
+
+//Method to verify value in Output text
+
+def verifyOutputTextCode(String str){
+return waitFor("slow"){outputTxtAreaCode.contains(str)}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
